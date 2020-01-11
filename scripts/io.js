@@ -58,9 +58,13 @@ function IO (client) {
   this.onControl = (msg) => {
     if (msg.data[0] >= 176 && msg.data[0] < 184) {
       const ch = msg.data[0] - 176
-      const knob = msg.data[1] % 64
+      const knob = msg.data[1] - 1
       const val = msg.data[2]
       client.mixer.tweak(ch, knob, val)
+    } else if (msg.data[0] === 144) {
+      const pad = msg.data[1]
+      const vel = msg.data[2]
+      client.rack.play(client.channel, pad, vel)
     }
   }
 
@@ -72,9 +76,9 @@ function IO (client) {
       client.rack.play(ch, pad, vel)
     } else if (msg.data[0] >= 176 && msg.data[0] < 184) {
       const ch = msg.data[0] - 176
-      const knob = msg.data[1] % 64
-      const val = msg.data[2]
-      client.mixer.tweak(ch, knob, val)
+      const knob = msg.data[1] - 1
+      const vel = msg.data[2]
+      client.mixer.tweak(ch, knob, vel)
     }
   }
 
