@@ -1,22 +1,24 @@
 {
-  "name": "enfer",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "name": "Orca",
+  "version": "0.1.0",
+  "engines": {
+    "node": ">= 10"
+  },
+  "main": "main.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "serve": "python -m SimpleHTTPServer 8000 && firefox \"http://localhost:8000/\""
+    "start": "electron . --disable-gpu",
+    "time": "node time.js",
+    "docs": "node ../docs.js",
+    "fix": "standard --fix",
+    "update": "npm update --save"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/neauoire/Enfer.git"
+  "devDependencies": {
+    "electron": "^8.5.3",
+    "electron-packager": "^15.1.0"
   },
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/neauoire/Enfer/issues"
+  "dependencies": {
+    "node-osc": "^4.1.9"
   },
-  "homepage": "https://github.com/neauoire/Enfer#readme",
   "standard": {
     "globals": [
       "terminal",
@@ -29,7 +31,7 @@
       "Worker"
     ],
     "ignore": [
-      "scripts/lib/tone.js"
+      "/node_modules/*"
     ]
   }
 }
